@@ -5,8 +5,5 @@ $("document").ready(function () {
         targetContainer.append(e.data.replace('\\n', '<br/>'));
         $('html, body').scrollTop($(document).height());
         console.log(e);
-        if (e.data > 20) {
-            targetContainer.style.color = "red";
-        }
     });
 });

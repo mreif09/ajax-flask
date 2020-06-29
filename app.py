@@ -41,5 +41,20 @@ def api_stream():
     return Response(eventStream(), mimetype="text/event-stream")
 
 
+@app.route('/poll')
+def poll():
+    return render_template('poll.html')
+
+
+@app.route("/api/poll", methods=["POST"])
+def api_poll():
+    offset = request.get_json()['offset']
+
+    text = 'line1\nl2\nline3\n' * 200
+    output = text[offset:offset+10]
+    index = output.rfind('\n')
+    return output[0:index+1]
+
+
 if __name__ == '__main__':
     app.run(debug=True)
