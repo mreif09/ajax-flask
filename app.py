@@ -1,5 +1,6 @@
 from flask import Flask, request, jsonify, render_template, Response
 from time import sleep
+import model
 
 app = Flask(__name__)
 
@@ -54,6 +55,15 @@ def api_poll():
     output = text[offset:offset+10]
     index = output.rfind('\n')
     return output[0:index+1]
+
+
+@app.route('/')
+def sessions():
+    return render_template('sessions.html')
+
+@app.route('/api/sessions', methods=["POST"])
+def api_sessions():
+    return jsonify([session.data for session in model.get_sessions().values()])
 
 
 if __name__ == '__main__':
