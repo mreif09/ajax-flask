@@ -14,7 +14,7 @@ function updateMessages () {
     }).done(function (data) {
         offset = offset + data.length;
         console.log(data);
-        $('#output').append(data.replace(/\n/g, '<br/>'));
+        $('#output').append('<p>' + data + '</p>');
         $('html, body').scrollTop($(document).height());
     });
 
