@@ -1,5 +1,8 @@
 import json
 import pathlib
+
+_SESSION_PATH = pathlib.Path('Runtastic_Export/Sport-sessions')
+
 class Serializable():
     @property
     def json(self):
@@ -21,7 +24,7 @@ class Session(Serializable):
 
 
 def get_sessions():
-    data_dir = pathlib.Path('Runtastic_Export/Sport-sessions')
+    data_dir = _SESSION_PATH
     sessions = {}
 
     for session_path in data_dir.glob('*.json'):
@@ -31,3 +34,14 @@ def get_sessions():
         sessions[session.session_id] = session
 
     return sessions
+
+def get_gpx(id):
+    gpx_path = _SESSION_PATH / 'GPS-data' / f'{id}.gpx'
+
+    if gpx_path.is_file():
+        with open(gpx_path) as fd:
+            gpx = fd.read()
+    else:
+        gpx = None
+
+    return gpx

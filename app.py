@@ -1,8 +1,13 @@
-from flask import Flask, request, jsonify, render_template, Response
+import json
 from time import sleep
+
+from flask import Flask, request, jsonify, render_template, Response, abort
+
 import model
 
 app = Flask(__name__)
+with open('config.json') as fd:
+    config = json.load(fd)
 
 
 @app.route('/form')
@@ -59,11 +64,22 @@ def api_poll():
 
 @app.route('/')
 def sessions():
-    return render_template('sessions.html')
+    return render_template('sessions.html', config=config)
 
-@app.route('/api/sessions', methods=["POST"])
+
+@app.route('/api/sessions')
 def api_sessions():
     return jsonify([session.data for session in model.get_sessions().values()])
+
+
+@app.route('/api/gpx/<id>')
+def api_gpx(id):
+    gpx = model.get_gpx(id)
+
+    if not gpx:
+        abort(404)
+
+    return gpx
 
 
 if __name__ == '__main__':

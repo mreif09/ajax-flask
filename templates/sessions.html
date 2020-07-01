@@ -3,13 +3,26 @@
 
 <head>
     <link rel="stylesheet" href="{{url_for('static', filename='fitness.css')}}" type="text/css" />
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script  type="text/javascript" src="{{url_for('static', filename='fitness.js')}}"></script>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="{{url_for('static', filename='fitness.js')}}"></script>
+    <link rel="stylesheet" href="{{url_for('static', filename='sessions.css')}}" type="text/css" />
+    <script type="text/javascript" src="{{url_for('static', filename='loadgpx.js')}}"></script>
+    <script>
+        var home_position = { lat: {{config.home.lat}}, lng: {{config.home.lng}} };
+      </script>
+    <script type="text/javascript" src="{{url_for('static', filename='sessions.js')}}"></script>
+    <script
+        async defer
+        type="text/javascript"
+        src="https://maps.googleapis.com/maps/api/js?key={{config.gmaps_api_key}}&callback=initMap">
+    </script>
 </head>
 
 <body>
-    <div id="output" />
+    <h1>Sessions</h1>
+    <div id="map">map</div>
+    <div id="output"></div>
 </body>
 
 </html>
