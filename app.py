@@ -1,7 +1,7 @@
 import json
 from time import sleep
 
-from flask import Flask, request, jsonify, render_template, Response, abort
+from flask import Flask, request, jsonify, render_template, Response, abort, redirect
 
 import model
 
@@ -61,11 +61,17 @@ def api_poll():
     index = output.rfind('\n')
     return output[0:index+1]
 
-
 @app.route('/')
+def root():
+    return redirect('/sessions')
+
+@app.route('/sessions')
 def sessions():
     return render_template('sessions.html', config=config)
 
+@app.route('/body')
+def body():
+    return render_template('body.html', config=config)
 
 @app.route('/api/sessions')
 def api_sessions():

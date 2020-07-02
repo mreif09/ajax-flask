@@ -1,3 +1,4 @@
+"use strict";
 var map;
 var polylines = [];
 var sessions = [];
@@ -5,7 +6,7 @@ var sessions = [];
 $("document").ready(function () {
     // load sessions
     $.ajax({
-        url: "http://localhost:5000/api/sessions",
+        url: "/api/sessions",
         type: "GET",
         contentType: "application/json",
         success: function (data) {
@@ -27,7 +28,7 @@ $("document").ready(function () {
                     <span class="sport_type">${session.sport_type}</span>
                 </p>`);
 
-                document.getElementById(session.session_id).onmouseover = function () {
+                document.getElementById(session.session_id).onclick = function () {
                     loadGPXFileIntoGoogleMap(map, session.session_id);
                 }
             })

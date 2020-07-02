@@ -1,3 +1,4 @@
+"use strict";
 class Session {
     constructor(data) {
         this.session_id = data.session_id
@@ -5,6 +6,7 @@ class Session {
         this.end_time = new Date(data.end_time)
         this.duration = new Date(data.duration)
         this.distance = data.distance
+
         if (data.sport_type_id == 1) {
             this.sport_type = 'Laufen'
         }

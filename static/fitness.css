@@ -1,33 +1,49 @@
-html,
 body {
-  height: 100%;
+    font-family: Arial;
+    background: #F0F0F0;
 }
 
-p.session {
-    margin: 0;
-    margin-bottom: 1px;
+h1 {
+    color:rgb(99, 166, 189);
+}
 
-    height: 30px;
-    line-height: 30px;
+header, div#menu, div#content {
+    width: 1000px;
+    margin: 10px auto;
     padding: 10px;
-
     border: 1px solid black;
-    background-color: #F0F0F0;
 }
 
-p.session:hover {
-    background-color: #E0E0E0;
+header {
+    background-color: white;
+    height: 60px;
+    line-height: 60px;
+    text-align: center;
+    font-size: 30px;
+    font-weight: bold;
 }
 
-p.session span {
-    display: inline-block;
-    vertical-align: middle;
-    line-height: normal;
+div#menu {
+    height: 20px;
+    background-color: #333;
 }
 
-div#map {
-    border: 1px solid black;
-    width: 100%;
-    height: 50%;
-    margin-bottom: 10px;
+div#menu a {
+    float: left;
+    display: block;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 0px 16px;
+    text-decoration: none;
 }
+
+div#content {
+    background-color: white;
+}
+
+@media screen and (max-width: 1000px) {
+    header, div#menu, div#content {
+        width: 100%;
+        margin: 10px 0;
+    }
+  }
