@@ -42,7 +42,7 @@ function loadGPXFileIntoGoogleMap(map, id) {
     }
 
     $.ajax({
-        url: "http://localhost:5000/api/gpx/" + id,
+        url: "/api/gpx/" + id,
         type: "GET",
         dataType: "xml",
         success: function (data) {
@@ -76,27 +76,4 @@ function initMap() {
         map: map,
         title: 'Home!'
     });
-
-    // load a map
-    // var mapOptions = {
-    //     zoom: 8,
-    //     mapTypeId: google.maps.MapTypeId.ROADMAP
-    //   };
-    // map = new google.maps.Map(document.getElementById("map"), mapOptions);
-
-    // $.ajax({
-    //     url: "http://localhost:5000/api/gpx/0aabf975-d791-4baa-b444-fe1f02d0b600",
-    //     type: "GET",
-    //     dataType: "xml",
-    // }).done(function (data) {
-    //     console.log(data);
-    //     var parser = new GPXParser(data, map);
-    //     parser.setTrackColour("#ff0000");     // Set the track line colour
-    //     parser.setTrackWidth(5);          // Set the track line width
-    //     parser.setMinTrackPointDelta(0.001);      // Set the minimum distance between track points
-    //     parser.centerAndZoom(data);
-    //     parser.addTrackpointsToMap();         // Add the trackpoints
-    //     parser.addRoutepointsToMap();         // Add the routepoints
-    //     parser.addWaypointsToMap();           // Add the waypoints
-    // })
 }

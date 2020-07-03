@@ -85,8 +85,11 @@ def api_gpx(id):
     if not gpx:
         abort(404)
 
-    return gpx
+    resp = Response(gpx)
+    resp.cache_control.max_age = 3600
+
+    return resp
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True, host='0.0.0.0')

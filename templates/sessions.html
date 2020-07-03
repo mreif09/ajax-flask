@@ -1,7 +1,6 @@
 {% extends "base.html" %}
 {% block title %}Sessions{% endblock %}
 {% block head %}
-    <link rel="stylesheet" href="{{url_for('static', filename='sessions.css')}}" type="text/css" />
     <script type="text/javascript" src="{{url_for('static', filename='loadgpx.js')}}"></script>
     <script>
         var home_position = { lat: {{config.home.lat}}, lng: {{config.home.lng}} };
