@@ -94,6 +94,17 @@ def api_gpx(id):
 
     return resp
 
+@app.route('/api/heart_rate/<id>')
+def api_hear_rate(id):
+    heart_rate = model.get_heart_rate(id)
+
+    if not heart_rate:
+        abort(404)
+
+    resp = jsonify(heart_rate)
+    resp.cache_control.max_age = 3600
+
+    return resp
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0')

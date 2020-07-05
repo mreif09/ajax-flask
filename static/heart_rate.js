@@ -1,10 +1,7 @@
 "use strict";
-var map;
-var polylines = [];
 var sessions = [];
 
 $("document").ready(function () {
-    // load sessions
     $.ajax({
         url: "/api/sessions",
         type: "GET",
@@ -29,9 +26,43 @@ $("document").ready(function () {
                 </p>`);
 
                 document.getElementById(session.session_id).onclick = function () {
-                    loadGPXFileIntoGoogleMap(map, session.session_id);
+                    drawHeartRateFigure(session.session_id);
                 }
-            })
+            });
+
+            drawHeartRateFigure(sessions[0].session_id);
         }
     });
 });
+
+function drawHeartRateFigure(id) {
+    $.ajax({
+        url: "/api/heart_rate/" + id,
+        type: "GET",
+        contentType: "application/json",
+        success: function (data) {
+            var x = [];
+            var y = [];
+            data.forEach(element => {
+                x.push(new Date(element.timestamp));
+                y.push(element.heart_rate);
+            })
+            Plotly.newPlot('plotly', [{
+                x: x,
+                y: y,
+                mode: 'lines+markers',
+                text: 'bpm',
+                line: { shape: 'spline', color: 'rgb(255, 0, 0)' },
+                type: 'scatter'
+            }], {
+                'xaxis': {
+                    // tickformat: "%H:%M:%S",
+                    type: 'date'
+                }
+            });
+        },
+        error: function () {
+            // nothing todo
+        }
+    });
+}

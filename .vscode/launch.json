@@ -5,7 +5,7 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Python: Flask",
+            "name": "Server",
             "type": "python",
             "request": "launch",
             "module": "flask",
@@ -22,9 +22,9 @@
             "jinja": true
         },
         {
+            "name": "Client",
             "type": "chrome",
             "request": "launch",
-            "name": "Launch Chrome against localhost",
             "url": "http://localhost:5000/heart",
             "webRoot": "${workspaceFolder}",
             // google-chrome --remote-debugging-port=9222

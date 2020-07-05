@@ -1,10 +1,10 @@
 {% extends "base.html" %}
 {% block title %}Heart Rate{% endblock %}
 {% block head %}
-    <script type="text/javascript" src="{{url_for('static', filename='heart_rate.js')}}"></script>
-    <script type="text/javascript" src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script type="text/javascript" src="{{url_for('static', filename='heart_rate.js')}}" async defer></script>
+    <script type="text/javascript" src="{{url_for('static', filename='plotly-latest.min.js')}}" async defer></script>
 {% endblock %}
 {% block content %}
-    <div id="plotly">plotly</div>
+    <div id="plotly"></div>
     <div id="output"></div>
 {% endblock %}
