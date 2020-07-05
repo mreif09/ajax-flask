@@ -23,6 +23,14 @@ class Session(Serializable):
         self.sport_type_id = data['sport_type_id']
 
 
+class HertRate(Serializable):
+    def __init__(self, data):
+        self.heart_rate = data['heart_rate']
+        self.timestamp = data['timestamp']
+        self.duration = data['duration']
+        self.distance = data['distance']
+
+
 def get_sessions():
     data_dir = _SESSION_PATH
     sessions = {}
@@ -45,3 +53,14 @@ def get_gpx(id):
         gpx = None
 
     return gpx
+
+def get_heart_rate(id):
+    hr_path = _SESSION_PATH / 'Heart-rate-data' / f'{id}.json'
+
+    if hr_path.is_file():
+        with open(hr_path) as fd:
+            data = json.load(fd)
+    else:
+        data = None
+
+    return data

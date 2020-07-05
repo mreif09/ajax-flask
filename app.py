@@ -73,6 +73,10 @@ def sessions():
 def body():
     return render_template('body.html', config=config)
 
+@app.route('/heart')
+def heart():
+    return render_template('heart_rate.html', config=config)
+
 @app.route('/api/sessions')
 def api_sessions():
     return jsonify([session.data for session in model.get_sessions().values()])

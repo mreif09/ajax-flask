@@ -1,6 +1,7 @@
 {% extends "base.html" %}
-{% block title %}Body Stats{% endblock %}
+{% block title %}Heart Rate{% endblock %}
 {% block head %}
+    <script type="text/javascript" src="{{url_for('static', filename='heart_rate.js')}}"></script>
     <script type="text/javascript" src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 {% endblock %}
 {% block content %}
